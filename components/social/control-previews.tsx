@@ -32,6 +32,13 @@ import {
   LcdDisplayStatus,
   LcdDisplayValue,
 } from "@/components/ui/lcd-display";
+import {
+  LcdMeter,
+  LcdMeterChannel,
+  LcdMeterChannels,
+  LcdMeterClip,
+  LcdMeterScale,
+} from "@/components/ui/lcd-meter";
 import { LevelMeter } from "@/components/ui/level-meter";
 import { LiveWaveform } from "@/components/ui/live-waveform";
 import {
@@ -148,6 +155,24 @@ export const LcdPreview = () => (
       <LcdDisplayValue>High</LcdDisplayValue>
     </LcdDisplayRow>
     <LcdDisplayStatus state="off" />
+  </LcdDisplay>
+);
+
+const LCD_STEREO = [{ peakDb: -8 }, { peakDb: -14 }];
+
+export const LcdMeterPreview = () => (
+  <LcdDisplay className="w-[30rem]" size="lg" variant="amber">
+    <LcdDisplayRow>
+      <LcdDisplayLabel>Out</LcdDisplayLabel>
+      <LcdMeter channels={LCD_STEREO} segments={24}>
+        <LcdMeterChannels>
+          <LcdMeterChannel index={0} />
+          <LcdMeterChannel index={1} />
+          <LcdMeterScale />
+        </LcdMeterChannels>
+        <LcdMeterClip />
+      </LcdMeter>
+    </LcdDisplayRow>
   </LcdDisplay>
 );
 
